@@ -14,8 +14,17 @@ if (!which('sails') && !which('ember')) {
 program
   .version('0.0.1')
   .usage('<keywords>')
-  .option('-v', 'output the version number')
-  .parse(process.argv);
+  .option('-v', 'output the version number');
+
+program.on('--help', function(){
+  console.log('  Available commands:');
+  console.log('');
+  console.log('sane new <projectname>');
+  console.log('    Creates a new folder and sets up the sails-ember app');
+  console.log('');
+});
+
+program.parse(process.argv);
 
 if(!program.args.length) {
   program.help();

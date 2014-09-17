@@ -5,6 +5,14 @@ A **work in progress** that is meant to supersede the current [SANE Stack](https
 
 We are planning to use [Docker](https://github.com/docker/docker) to simplify setup and make development more consistent.
 
+##Test
+If you wanna start playing around with it
+
+* `git clone git@github.com:artificialio/sane-cli.git`
+* `cd sane-cli`
+* `npm install -g`
+* `sane help`
+
 ##Contribution
 Everyone is more than welcome to contribute in any way: Report a bug, request a feature or submit a pull request. Just keep things sensible, so we can easily reproduce bugs, have a clear explanation of your feature request, etc.
 

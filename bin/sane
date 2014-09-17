@@ -6,9 +6,13 @@ process.title = 'sane';
 var program = require('commander');
 require('shelljs/global');
 
-if (!which('sails') && !which('ember')) {
-  echo('Sorry, this script requires ember (npm install -g ember-cli) and sails (npm install -g sails) installed.');
+if (!which('sails') || !which('ember')) {
+  console.log('Exit now!');
+  echo('sane requires the latest ember (npm install -g ember-cli) and sails (npm install -g sails) to be installed.');
   exit(1);
+} else {
+  echo('Idiots');
+  console.log('Blub');
 }
 
 program

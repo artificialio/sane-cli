@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+// Provide a title to the process in `ps`
+process.title = 'sane';
+
+var program = require('commander');
+require('shelljs/global');
+
+if (!which('sails') && !which('ember')) {
+  echo('Sorry, this script requires ember (npm install -g ember-cli) and sails (npm install -g sails) installed.');
+  exit(1);
+}
+
+program
+  .version('0.0.1')
+  .usage('<keywords>')
+  .option('-v', 'output the version number')
+  .parse(process.argv);
+
+if(!program.args.length) {
+  program.help();
+} else {
+    //console.log('Keywords: ' + program.args);
+    if (program.args[0] === 'help') {
+      program.help();
+    }
+
+    if (program.args[0] === 'new') {
+      console.log('Program names:');
+      console.log(program.args[1]);
+      if (exec('mkdir ' + program.args[1]).code !== 0) {
+        echo('Error: Creating a new folder failed.');
+        exit(1);
+      }
+
+      if (exec('cd ' + program.args[1] + ' && sails new server').code !== 0) {
+        echo('Error: Creating a new sails project failed');
+        exit(1);
+      }
+
+      if (exec('cd ' + program.args[1] + ' && ember new client').code !== 0) {
+        echo('Error: Creating a new Ember Project failed');
+        exit(1);
+      }
+    }
+  }
